@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurante - Sitio Empresarial</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- REQUISITO: Navegación funcional -->
+  <header class="navbar">
+    <div class="logo">🍽️ Mi Restaurante</div>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#menu">Menú</a>
+      <a href="#pedidos">Pedidos / Caja</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button id="btnEstadoLocal" class="btn-estado">🟢 Local Abierto</button>
+  </header>
+
+  <!-- SECCIÓN INICIO -->
+  <section id="inicio" class="hero">
+    <div class="hero-texto animacion-aparicion">
+      <h1>Las Mejores Milanesas y Lomitos</h1>
+      <p>Sabor casero, porciones generosas y atención rápida en salón o para llevar.</p>
+      <a href="#menu" class="btn-principal animacion-pulsacion">Ver Menú y Pedir</a>
+    </div>
+    <div class="hero-card animacion-movimiento">
+      <h3>⭐ Plato Estrella</h3>
+      <p><strong>Milanesa Napolitana para 2</strong></p>
+      <span class="precio-destacado">Bs 70</span>
+    </div>
+  </section>
+
+  <!-- SECCIÓN NOSOTROS -->
+  <section id="nosotros" class="seccion">
+    <h2>Sobre Nosotros</h2>
+    <p>Somos un restaurante dedicado a ofrecer milanesas napolitanas, parmesanas, hamburguesas y lomitos preparados al instante con ingredientes frescos.</p>
+  </section>
+
+  <!-- SECCIÓN MENÚ (DOM + JSON + Eventos + Colecciones) -->
+  <section id="menu" class="seccion">
+    <h2>Nuestro Menú</h2>
+    <div class="controles-menu">
+      <input type="text" id="buscador" placeholder="🔍 Buscar milanesa, bebida...">
+      <div class="filtros">
+        <button class="btn-filtro activo" data-categoria="todos">Todos</button>
+        <button class="btn-filtro" data-categoria="Platos">Platos</button>
+        <button class="btn-filtro" data-categoria="Bebidas">Bebidas</button>
+      </div>
+    </div>
+    <!-- Aquí se inyectan los productos desde JSON con DOM -->
+    <div id="contenedor-productos" class="grid-productos"></div>
+  </section>
+
+  <!-- SECCIÓN PEDIDOS, FORMULARIO Y GESTIÓN DE MESAS/CAJA -->
+  <section id="pedidos" class="seccion grid-dos-columnas">
+    <div class="panel">
+      <h2>1. Carrito y Formulario de Pedido</h2>
+      <ul id="lista-carrito" class="lista-carrito"></ul>
+      <p class="total-texto">Total Pedido: <strong>Bs <span id="total-carrito">0</span></strong></p>
+
+      <!-- REQUISITO: Al menos 1 formulario -->
+      <form id="form-pedido">
+        <input type="text" id="cliente" placeholder="Nombre del cliente *" required>
+        <input type="tel" id="telefono" placeholder="Teléfono / Celular *" required>
+        <select id="mesa">
+          <option value="Mesa 1">Mesa 1</option>
+          <option value="Mesa 2">Mesa 2</option>
+          <option value="Mesa 3">Mesa 3</option>
+          <option value="Mesa 4">Mesa 4</option>
+          <option value="Para Llevar">Para Llevar / Delivery</option>
+        </select>
+        <textarea id="observaciones" placeholder="Observaciones (ej. sin cebolla, bien cocido)"></textarea>
+        <button type="submit" class="btn-principal animacion-pulsacion">Confirmar y Enviar a Cocina</button>
+      </form>
+    </div>
+
+    <!-- CONSERVACIÓN DE FUNCIONALIDADES: Mesas, Cocina y Caja -->
+    <div class="panel">
+      <h2>2. Control de Cocina y Caja</h2>
+      <div class="resumen-caja">
+        <span>Pedidos Activos: <strong id="cant-pedidos">0</strong></span>
+        <span>Total en Caja: <strong>Bs <span id="total-caja">0</span></strong></span>
+      </div>
+      <div id="lista-cocina" class="lista-cocina">
+        <p class="texto-vacio">No hay comandas registradas aún.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN CONTACTO -->
+  <footer id="contacto" class="footer">
+    <h3>Contacto y Ubicación</h3>
+    <p>📍 Atención todos los días | 📞 Pedidos al WhatsApp | Proyecto Académico de Desarrollo Web</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+[
+  {"id":1,"nombre":"napolitana de carne","precio":40,"categoria":"Platos","desc":"Porción para 1 persona"},
+  {"id":2,"nombre":"napolitana de pollo","precio":40,"categoria":"Platos","desc":"Porción para 1 persona"},
+  {"id":3,"nombre":"parmesana de carne","precio":40,"categoria":"Platos","desc":"Con queso parmesano gratinado"},
+  {"id":4,"nombre":"parmesana de pollo","precio":40,"categoria":"Platos","desc":"Con queso parmesano gratinado"},
+  {"id":5,"nombre":"Hamburguesa","precio":25,"categoria":"Platos","desc":"Clásica artesanal con papas"},
+  {"id":6,"nombre":"Lomito","precio":25,"categoria":"Platos","desc":"Lomito jugoso completo"},
+  {"id":7,"nombre":"Limonada o lima en vaso","precio":5,"categoria":"Bebidas","desc":"Vaso personal refrescante"},
+  {"id":8,"nombre":"Jarra chica","precio":10,"categoria":"Bebidas","desc":"Limonada o lima"},
+  {"id":9,"nombre":"Jarra grande","precio":15,"categoria":"Bebidas","desc":"Ideal para compartir"},
+  {"id":10,"nombre":"Tropi","precio":15,"categoria":"Bebidas","desc":"Bebida frutal"},
+  {"id":11,"nombre":"Coca-Cola","precio":20,"categoria":"Bebidas","desc":"Botella familiar"},
+  {"id":12,"nombre":"Fanta","precio":20,"categoria":"Bebidas","desc":"Botella familiar"},
+  {"id":13,"nombre":"Guaraná","precio":20,"categoria":"Bebidas","desc":"Botella familiar"},
+  {"id":14,"nombre":"Coca-Cola Zero","precio":20,"categoria":"Bebidas","desc":"Sin azúcar"},
+  {"id":15,"nombre":"Agua personal con gas","precio":7,"categoria":"Bebidas","desc":"Botella 500ml"},
+  {"id":16,"nombre":"Agua personal sin gas","precio":7,"categoria":"Bebidas","desc":"Botella 500ml"}
+]

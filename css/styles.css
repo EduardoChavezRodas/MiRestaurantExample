@@ -1,0 +1,80 @@
+:root {
+  --rojo: #b91c1c;
+  --naranja: #f59e0b;
+  --oscuro: #1f2937;
+  --gris-claro: #f3f4f6;
+  --blanco: #ffffff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+html { scroll-behavior: smooth; background: var(--gris-claro); color: var(--oscuro); }
+
+/* Navegación */
+.navbar {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--oscuro); color: var(--blanco); padding: 14px 5%;
+}
+.navbar nav a { color: var(--blanco); text-decoration: none; margin: 0 10px; font-weight: 500; }
+.navbar nav a:hover { color: var(--naranja); }
+.btn-estado { background: #065f46; color: white; border: none; padding: 6px 12px; border-radius: 20px; cursor: pointer; }
+
+/* Hero / Portada */
+.hero {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+  background: linear-gradient(135deg, var(--rojo), #7f1d1d);
+  color: var(--blanco); padding: 50px 5%; gap: 20px;
+}
+.hero-card {
+  background: var(--blanco); color: var(--oscuro);
+  padding: 20px; border-radius: 12px; text-align: center; min-width: 240px;
+}
+.precio-destacado { display: block; font-size: 1.8rem; font-weight: bold; color: var(--rojo); margin-top: 8px; }
+
+/* Secciones y Botones */
+.seccion { padding: 40px 5%; max-width: 1100px; margin: auto; }
+h2 { margin-bottom: 15px; border-left: 5px solid var(--rojo); padding-left: 10px; }
+.btn-principal {
+  display: inline-block; background: var(--naranja); color: var(--oscuro);
+  font-weight: bold; padding: 10px 18px; border: none; border-radius: 8px;
+  text-decoration: none; cursor: pointer; margin-top: 12px;
+}
+
+/* Controles y Tarjetas de Productos */
+.controles-menu { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+#buscador { flex: 1; min-width: 220px; padding: 10px; border: 1px solid #ccc; border-radius: 6px; }
+.btn-filtro { padding: 8px 14px; border: 1px solid var(--rojo); background: var(--blanco); cursor: pointer; border-radius: 6px; }
+.btn-filtro.activo { background: var(--rojo); color: var(--blanco); }
+
+.grid-productos { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+.tarjeta {
+  background: var(--blanco); padding: 16px; border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08); display: flex; flex-direction: column; justify-content: space-between;
+}
+.tarjeta h4 { margin-bottom: 6px; }
+.badge { font-size: 0.75rem; background: #fee2e2; color: var(--rojo); padding: 3px 8px; border-radius: 4px; width: fit-content; margin-bottom: 8px; }
+.precio { font-size: 1.2rem; font-weight: bold; color: var(--rojo); margin: 10px 0; }
+.btn-agregar { background: var(--oscuro); color: var(--blanco); border: none; padding: 8px; border-radius: 6px; cursor: pointer; }
+.btn-agregar:hover { background: var(--rojo); }
+
+/* Formulario, Carrito y Cocina */
+.grid-dos-columnas { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.panel { background: var(--blanco); padding: 20px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.lista-carrito { list-style: none; margin-bottom: 12px; }
+.item-carrito { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #eee; }
+.btn-quitar { background: #ef4444; color: white; border: none; padding: 2px 7px; border-radius: 4px; cursor: pointer; }
+form input, form select, form textarea { width: 100%; padding: 9px; margin-top: 10px; border: 1px solid #ccc; border-radius: 6px; }
+.resumen-caja { display: flex; justify-content: space-between; background: #fef3c7; padding: 12px; border-radius: 8px; margin-bottom: 12px; }
+.comanda { background: var(--gris-claro); padding: 10px; border-left: 4px solid var(--rojo); border-radius: 6px; margin-bottom: 10px; }
+.footer { text-align: center; background: var(--oscuro); color: var(--blanco); padding: 20px; margin-top: 30px; }
+
+/* REQUISITO: Al menos 3 animaciones CSS */
+@keyframes aparecer { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes flotar { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes pulsar { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
+.animacion-aparicion { animation: aparecer 0.5s ease-out; }
+.animacion-movimiento { animation: flotar 3s ease-in-out infinite; }
+.animacion-pulsacion { animation: pulsar 2s infinite; }
+
+@media (max-width: 600px) { .navbar { flex-direction: column; gap: 10px; } }
