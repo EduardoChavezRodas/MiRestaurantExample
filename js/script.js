@@ -18,19 +18,23 @@ const jsonRespaldo = `[
   {"id":16,"nombre":"Agua personal sin gas","precio":7,"categoria":"Bebidas","desc":"Botella 500ml"}
 ]`;
 
-// REQUISITO COLECCIONES: Arreglos de productos, carrito y pedidos en cocina
+// 🔥 MODIFICACIÓN: Leer de localStorage al cargar la página o iniciar vacío
 let productos = JSON.parse(jsonRespaldo);
-let carrito = [];
-let comandasCocina = [];
+let carrito = JSON.parse(localStorage.getItem('miCarrito')) || [];
+let comandasCocina = JSON.parse(localStorage.getItem('misComandas')) || [];
 let categoriaActual = "todos";
 
-// Intentar cargar desde data/productos.json si está en servidor (Vercel / Live Server)
+// Intentar cargar desde data/productos.json si está en servidor
 fetch("data/productos.json")
   .then(res => res.json())
   .then(datos => { productos = datos; mostrarProductos(); })
   .catch(() => mostrarProductos());
 
-// 2. REQUISITO DOM y COLECCIONES (filter + forEach)
+// 🔥 MODIFICACIÓN: Renderizar lo guardado inmediatamente al abrir la página
+actualizarCarritoDOM();
+renderizarCocinaYCaja();
+
+// 2. REQUISITO DOM y COLECCIONES
 function mostrarProductos(textoBusqueda = "") {
   const contenedor = document.getElementById("contenedor-productos");
   contenedor.innerHTML = "";
@@ -57,17 +61,25 @@ function mostrarProductos(textoBusqueda = "") {
   });
 }
 
-// 3. COLECCIONES: find() y push() para agregar, splice() para eliminar
+// 🔥 NUEVA FUNCIÓN: Guarda las colecciones en la memoria del navegador
+function guardarDatosLocales() {
+  localStorage.setItem('miCarrito', JSON.stringify(carrito));
+  localStorage.setItem('misComandas', JSON.stringify(comandasCocina));
+}
+
+// 3. COLECCIONES: find() y push()
 function agregarAlCarrito(id) {
   const productoEncontrado = productos.find(p => p.id === id);
   if (productoEncontrado) {
     carrito.push(productoEncontrado);
+    guardarDatosLocales(); // 🔥 Se guarda al agregar
     actualizarCarritoDOM();
   }
 }
 
 function quitarDelCarrito(indice) {
   carrito.splice(indice, 1);
+  guardarDatosLocales(); // 🔥 Se guarda al quitar
   actualizarCarritoDOM();
 }
 
@@ -87,13 +99,11 @@ function actualizarCarritoDOM() {
   document.getElementById("total-carrito").textContent = sumaTotal;
 }
 
-// 4. REQUISITO LISTENERS Y AL MENOS 3 EVENTOS
-// Evento 1: input (Buscador en tiempo real)
+// 4. REQUISITO LISTENERS Y EVENTOS
 document.getElementById("buscador").addEventListener("input", (e) => {
   mostrarProductos(e.target.value);
 });
 
-// Evento 2: click (Filtros de categoría)
 document.querySelectorAll(".btn-filtro").forEach(boton => {
   boton.addEventListener("click", () => {
     document.querySelectorAll(".btn-filtro").forEach(b => b.classList.remove("activo"));
@@ -103,20 +113,18 @@ document.querySelectorAll(".btn-filtro").forEach(boton => {
   });
 });
 
-// Evento 3: click (Cambiar estado Abierto/Cerrado con DOM)
 document.getElementById("btnEstadoLocal").addEventListener("click", (e) => {
   const abierto = e.target.textContent.includes("Abierto");
   e.target.textContent = abierto ? "🔴 Local Cerrado" : "🟢 Local Abierto";
   e.target.style.background = abierto ? "#991b1b" : "#065f46";
 });
 
-// Evento 4: submit (Validación de formulario y registro en Cocina y Caja)
 document.getElementById("form-pedido").addEventListener("submit", (e) => {
   e.preventDefault();
   if (carrito.length === 0) return alert("Agrega al menos un producto del menú al carrito.");
 
   const totalPedido = carrito.reduce((acc, item) => acc + item.precio, 0);
-  const nombresPlatos = carrito.map(i => i.nombre).join(", "); // Uso de .map()
+  const nombresPlatos = carrito.map(i => i.nombre).join(", ");
 
   comandasCocina.push({
     cliente: document.getElementById("cliente").value,
@@ -127,6 +135,7 @@ document.getElementById("form-pedido").addEventListener("submit", (e) => {
   });
 
   carrito = [];
+  guardarDatosLocales(); // 🔥 Se guarda al enviar el formulario (vacía carrito y añade comanda)
   e.target.reset();
   actualizarCarritoDOM();
   renderizarCocinaYCaja();
